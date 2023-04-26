@@ -15,7 +15,7 @@ export const BodyMain = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}>
-        <Search />
+       <Search/>
         <Hero />
       </div>
 

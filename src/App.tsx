@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { BodyMain } from "./components/bodyMain";
+import { useEffect, useState } from "react";
+import { BodyMain } from "./components/BodyMain";
+import Axios from 'axios';
 // import "../src/assets/app.css";
+
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>

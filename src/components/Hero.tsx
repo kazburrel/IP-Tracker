@@ -20,10 +20,9 @@ export const Hero = () => {
   return (
     <div
       className='hero w-75 mx-auto border text-center rounded-4 bg-white position-absolute bottom-0'
-      style={{
-        marginBottom: "-50px",
-        zIndex: 25
-      }}>
+      style={{  
+        marginBottom: "-50px", 
+        zIndex: "2" }}>
       <div className='row py-4'>
         <div className='col-md-3 col-12 det'>
           <span className='text-muted'>IP Address</span> <br />

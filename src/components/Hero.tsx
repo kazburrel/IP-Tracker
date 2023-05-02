@@ -1,21 +1,25 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext} from "react";
 import Axios from "axios";
 
+import { storeCtx } from "../context/storeCtx";
+
+
 export const Hero = () => {
+  const storedCtx = useContext(storeCtx);
+
   // Setting up the initial state variables
   const [ipDetails, setIpDetails] = useState<any>([]);
-  const [lat, setLat] = useState("");
-  const [lon, setLon] = useState("");
+
   // Fetching the API once when the
   // component is mounted
   useEffect(() => {
     Axios.get("http://ip-api.com/json/").then(res => {
       setIpDetails(res.data);
-      setLat(res.data.lat);
-      setLon(res.data.long);
+      storedCtx?.setLat(res.data.lat);
+      storedCtx?.setLon(res.data.lon);
     });
   }, []);
+
 
   return (
     <div

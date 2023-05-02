@@ -1,31 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext} from "react";
 import Axios from "axios";
 import L, { LatLngExpression } from "leaflet";
 import { Locations } from "../Domain";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
+import { storeCtx } from "../context/storeCtx";
 
 export const Iframe = () => {
-  const [ipDetails, setIpDetails] = useState<any>([]);
-  const [lat, setLat] = useState(40.7123);
-  const [lon, setLon] = useState(-74.0068);
+
+    const storedCtx = useContext(storeCtx)
  
   // Fetching the API once when the
   // component is mounted
-  useEffect(() => {
-    Axios.get("http://ip-api.com/json/").then(res => {
-      setIpDetails(res.data);
-      setLat(res.data.lat);
-      setLon(res.data.lon);
-        console.log(res.data);
-    });
-  }, []);
-
-  const position: LatLngExpression = [lat,lon];
+ 
+  
+  //   const list: Locations[] = [
+  //     {
+  //       city: ipDetails.city,
+  //       country: ipDetails.country,
+  //       zip: ipDetails.zip,
+  //       location: ipDetails.city,
+  //       lat: ipDetails.lat,
+  //       lon: ipDetails.lon,
+  //     },
+  //   ];
+  //   useEffect();
+  // Default coordinates set to Oslo central station
+  const position: LatLngExpression = [storedCtx.lat,storedCtx.lon];
+  console.log(position)
   const zoom: number = 20;
 
   return (
-    <MapContainer
+    <>
+   {storedCtx.lon && <MapContainer
       style={{
         zIndex: "0",
         height: "60vh",
@@ -40,6 +47,7 @@ export const Iframe = () => {
       {
         // Placeholder, we'll put our markers here
       }
-    </MapContainer>
+    </MapContainer>}
+    </>
   );
 };
